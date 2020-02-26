@@ -16,6 +16,7 @@ import com.lcx.movie.service.MovieService;
 import com.lcx.movie.vo.MovieVo;
 
 //sd
+//asdsad
 
 @Controller
 public class MovieController {
