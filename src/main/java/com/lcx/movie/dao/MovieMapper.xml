@@ -1,0 +1,65 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lcx.movie.dao.MovieMapper">
+	<select id="selects" resultType="Movie">
+		select * from t_movie
+		
+		<where>
+			<if test="name!=null and name!=''">
+			name like "%"#{name}"%"
+			</if>
+			<if test="t1!=null and t1!=''">
+			and uptime >=#{t1}
+			</if>
+			<if test="t2!=null and t2!=''">
+			and uptime &lt;=#{t2}
+			</if>
+			
+			
+			<if test="actor!=null and actor!=''">
+				and actor = #{actor}
+			</if>
+			
+			<if test="p1!=null">
+			and price >= #{p1}
+			</if>
+			
+			<if test="p2!=null">
+			and price &lt;= #{p2}
+			</if>
+			
+			
+			<if test="years!=null">
+				and years = #{years}
+			</if>
+			
+			<if test="l1!=null and l1!=''">
+				and longtime >=#{l1}
+			</if>
+			
+			<if test="l2!=null and l2!=''">
+				and longtime &lt;=#{l2s}
+			</if>
+			
+		</where>
+		
+		
+		<!-- 动态排序 -->
+		<if test="(orderName!=null and orderName!='') and (orderMethod!=null and orderMethod!='')">
+		
+		order by ${orderName} ${orderMethod}
+		</if>	
+	</select>
+	
+	<delete id="delete">
+		delete from t_movie where id in (#{ids})
+	</delete>
+	
+	<select id="selectById" resultType="Movie">
+		select * from t_movie where id = #{id}
+	</select>
+	
+	<update id="update">
+		update  t_movie set status=#{status} where id=#{id}
+	</update>
+</mapper>
