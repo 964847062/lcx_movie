@@ -15,7 +15,7 @@ import com.lcx.movie.domain.Movie;
 import com.lcx.movie.service.MovieService;
 import com.lcx.movie.vo.MovieVo;
 
-
+//sd
 
 @Controller
 public class MovieController {
